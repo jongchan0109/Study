@@ -38,4 +38,15 @@
     float 4byte 차지
 
     double 8byte 차지, 주로 사용됨
-  
+
++ 2.2 상수와 리터럴(constant &literal)
+  + 변수(variable): 하나의 값을 저장하기 위한 공간
+  + 상수(constant): 값을 한번만 저장할 수 있는 공간
+  + 리터럴(literal): 그 자체로 값을 의미하는 것
+ 
+  + 리터럴 타입의 접미사
+    long 형: L 사용
+
+    float 형: f 사용
+
+    double 형: d 사용 (주로 생략)
