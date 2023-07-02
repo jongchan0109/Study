@@ -24,12 +24,14 @@
   + 문자형 char: 자바에서 유니코드를 사용하므로 2byte 차지
  
   + 정수형 byte, short, int, long
+    
     byte 1byte 차지
     short 2byte 차지
     int 4byte 차지, 주로 사용됨
     long 8byte 차지
 
   + 실수형 float, double
+    
     float 4byte 차지
     double 8byte 차지, 주로 사용됨
   
