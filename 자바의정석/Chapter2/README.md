@@ -19,9 +19,9 @@
 + 2.1 기본형(primitive type)
   기본형에는 모두 8개의 타입이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
 
-  + 논리형 boolean true와 false 두 가지 값만 표현할 수 있고, 1byte 차지
+  + 논리형 boolean: true와 false 두 가지 값만 표현할 수 있고, 1byte 차지
  
-  + 문자형 char 자바에서 유니코드를 사용하므로 2byte 차지
+  + 문자형 char: 자바에서 유니코드를 사용하므로 2byte 차지
  
   + 정수형 byte, short, int, long
     byte 1byte 차지
