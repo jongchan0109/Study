@@ -53,10 +53,13 @@
     
 ## 4. 기본형(primitive type)
 + 4.1 논리형 - boolean
+
   boolean형 변수에는 true와 false 중 하나를 저장할 수 있으며 default는 false이다.
 + 4.2 문자형 - char
+
   char형 변수에 문자가 저장되는 것이 아닌 문자의 유니코드 값이 저장된다. (0~65536)
 + 4.3 정수형 - byte, short, int, long
+
   4개의 자료형이 표현할 수 있는 값의 범위가 다르고, byte는 1byte, short는 2byte, int는 4byte, long는 8byte가 된다. 각 자료가 표현할 수 있는 최대 범위를 벗어나면 오버플로우가 발생한다.
   
   overflow: 각 자료형의 표현할 수 있는 최대값에 1을 더할 경우 최솟값이 되고, 최솟값에 1을 뺄 경우 최댓값이 된다.
