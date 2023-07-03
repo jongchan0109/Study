@@ -8,5 +8,6 @@
     
 + Code
   + RecursiveFactorial.c
+  + FibonacciFunc.c
   + RecursiveBinarySearch.c
   + HanoiTower.c
