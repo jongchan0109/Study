@@ -82,3 +82,53 @@ public class Exercise3_4 {
 
 [3-4 정답]
 System.out.println(num/100*100);
+
+
+[3-5] 아래는 변수 num의 값 중에서 일의 자리를 1로 바꾸는 코드이다. 만일 변수 num의 값이 333이라면 331이 되고, 777이라면 771이 된다. (1)에 알맞은 코드를 넣으시오.
+
+public class Exercise3_5 {
+    public static void main(String[] args) {
+        int num = 333;
+        System.out.println(/* (1) */);
+    }
+}
+
+실행 결과
+331
+
+[3-5 정답]
+System.out.println(num/10*10 +1);
+
+
+[3-6] 아래는 변수 num의 값보다 크면서도 가장 가까운 10의 배수에서 변수 num의 값을 뺀 나머지를 구하는 코드이다. 
+예를 들어, 24의 크면서도 가장 가까운 10의 배수는 30이 다. 19의 경우 20이고, 81의 경우 90이 된다.
+30에서 24를 뺀 나머지는 6이기 때문에 변 수 num의 값이 24라면 6을 결과로 얻어야 한다. (1)에 알맞은 코드를 넣으시오.
+
+public class Exercise3_6 {
+    public static void main(String[] args) {
+        int num = 24;
+        System.out.println(/* (1) */);
+    }
+}
+
+[3-6 정답]
+System.out.println(10 - num%10);
+
+
+[3-7] 아래는 화씨(Fahrenheit)를 섭씨(Celcius)로 변환하는 코드이다. 변환공식이 'C = 5/9 ×(F - 32)'라고 할 때, 
+(1)에 알맞은 코드를 넣으시오. 단, 변환 결과값은 소수점 셋째자리에서 반올림해야한다.(Math.round()를 사용하지 않고 처리할 것)
+
+
+public class Exercise3_7 {
+    public static void main(String[] args) {
+        int fahrenheit = 100;
+        float celcius = (/* (1) */);
+
+        System.out.println("Fahrenheit: "+fahrenheit);
+        System.out.println("Celcius: "+celcius);
+    }
+}
+
+[3-7 정답]
+float celcius = (int)((5/9f * (fahrenheit-32))*100+0.5)/100f;
+
