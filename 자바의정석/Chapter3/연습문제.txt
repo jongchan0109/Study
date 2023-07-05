@@ -160,5 +160,13 @@ public class Exercise3_8 {
     }
 }
 
+실행 결과
+c=30
+ch=C
+f=1.5
+l=27000000000
+result=true
+
+
 [3-8 정답]
 코드 참조
