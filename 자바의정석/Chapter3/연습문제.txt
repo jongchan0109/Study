@@ -57,7 +57,7 @@ int numOfBucket = numOfApples/sizeOfBucket + (numOfApples%sizeOfBucket >0?1:0);
 public class Exercise3_3 {
     public static void main(String[] args) {
         int num = 10;
-        System.out.println(num>0?"양수":(num<0?"음수":"0"));
+        System.out.println(/* (1) */);
     }
 }
 
@@ -66,3 +66,19 @@ public class Exercise3_3 {
 
 [3-3 정답]
 System.out.println(num>0?"양수":(num<0?"음수":"0"));
+
+
+[3-4] 아래는 변수 num의 값 중에서 백의 자리 이하를 버리는 코드이다. 만일 변수 num 의 값이 ‘456’이라면 ‘400’이 되고, ‘111’이라면 ‘100’이 된다. (1)에 알맞은 코드를 넣으시오.
+
+public class Exercise3_4 {
+    public static void main(String[] args) {
+        int num = 456;
+        System.out.println(/* (1) */);
+    }
+}
+
+실행 결과
+400
+
+[3-4 정답]
+System.out.println(num/100*100);
