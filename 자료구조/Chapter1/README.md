@@ -8,4 +8,4 @@
 
 
 + Code
-  + 01-2 순차 탐색 알고리즘, 이진 탐색 알고리즘
+  + BinarySearch.c, LinearSearch.c
