@@ -8,4 +8,5 @@
 
 
 + Code
-  + BinarySearch.c, LinearSearch.c
+  + LinearSearch.c
+  + BinarySearch.c
