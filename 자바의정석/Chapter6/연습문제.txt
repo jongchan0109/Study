@@ -193,3 +193,112 @@ e. 클래스변수보다 인스턴스변수가 먼저 초기화된다.
 [6-14 풀이]
 c. 생성자보다 초기화 블록이 먼저 수행된다.
 e. 클래스 변수는 인스턴스 생성전에 초기화 된다.
+
+
+[6-15] 다음중 인스턴수 변수의 초기화 순서가 올바른 것은?
+a. 기본값 - 명시적초기화 - 초기화블록 - 생성자
+b. 기본값 - 명시적초기화 - 생성자 - 초기화블록
+c. 기본값 - 초기화블록 - 명시적초기화 - 생성자
+d. 기본값 - 초기화블록 - 생성자 - 명시적초기화
+
+[6-15 풀이]
+a
+
+[6-16] 다음 중 지역변수에 대한 설명으로 옳지 않은 것은? (모두 고르시오)
+a. 자동 초기화되므로 별도의 초기화가 필요없다.
+b. 지역변수가 선언된 메서드가 종료되면 지역변수도 함께 소멸된다.
+c. 매서드의 매개변수로 선언된 변수도 지역변수이다.
+d. 클래스변수나 인스턴스변수로 선언된 변수도 지역변수이다.
+e. 힙(heap)영역에 생성되며 가비지 컬렉터에 의해 소멸된다.
+
+[6-16 풀이]
+a. 지역 변수는 별도의 초기화가 필요하다.
+e. 지역 변수는 호출스택 영역에 생성된다.
+
+
+[6-17] 호출스택이 다음과 같은 상황일 때 옳지 않은 설명은? (모두 고르시오)
+println / method1 / method2 / main
+a. 제일 먼저 호출스택에 저장된 것은 main메서드이다.
+b. println메서드를 제외한 나머지 메서드들은 모두 종료된 상태이다.
+c. method2메서드를 호출한 것은 main메서드이다.
+d. println메서드가 종료되면 method1메서드가 수행을 재개한다.
+e. main-method2-method1-println의 순소러 호출되었다.
+f. 현재 실행중인 메서드는 println 뿐이다.
+
+[6-17 풀이]
+b. 나머지 메서드들은 모두 대기중이다.
+
+
+[6-18] 다음의 코드를 컴파일하면 에러가 발생한다. 컴파일 에러가 발생하는 라인과 그 이유를 설명하시오.
+class MemberCall {
+    int iv = 10;
+    static int cv = 20;
+    int iv2 = cv;
+    static int cv2 = iv; // A 라인
+    static void staticMethod1() {
+        System.out.println(cv);
+        System.out.println(iv); // B 라인
+    }
+    void instanceMethod1() {
+        System.out.println(cv);
+        System.out.println(iv); // C 라인
+    }
+    static void staticMethod2() {
+        staticMethod1();
+        instanceMethod1(); // D 라인
+    }
+    void instanceMethod2() {
+        staticMethod1(); // E 라인
+        instanceMethod1();
+    }
+}
+
+[6-18 풀이]
+A 라인 - 클래스 변수 cv2에 값에 인스턴스 변수인 iv의 값으로 초기화 하였기 때문에 컴파일 에러가 발생한다.
+B 라인 - 클래스 메서드에 인스턴스 변수 iv를 사용하였기 때문에 컴파일 에러가 발생한다.
+D 라인 - 클래스 메서드에 인스턴스 메서드 instanceMethod1을 사용하였기 때문에 컴파일 에러가 발생한다.
+
+
+[6-19] 다음 코드의 실행 결과를 예측하여 적으시오.
+class Exercise6_19
+{
+    public static void change(String str) {
+        str += "456";
+    }
+    public static void main(String[] args)
+    {
+        String str = "ABC123";
+        System.out.println(str);
+        change(str);
+        System.out.println("After change:"+str);
+    }
+}
+
+[6-19 풀이]
+ABC123
+After change:ABC123
+change(String str)이 실행 될 때 지역변수인 str은 처음에는 ABC123을 가르키지만, 문자열은 내용을 변경할 수 없기 때문에 "456"이 더해진 후에는 새로운 문자열 ABC123456이 생성되고, 지역변수 str은 새로운 문자열을 가르키게 되고, 함수 종료시 소멸된다.
+
+
+[6-20] 다음과 같이 정의된 메서드를 작성하고 테스트하시오.
+메서드명 : shuffle
+기   능 : 주어진 배열에 담긴 값의 위치를 바꾸는 작업을 반복하여 뒤섞이게 한다. 처리한 배열을 반환한다.
+반환타입 : int[]
+매개변수 : int[] arr - 정수값이 담긴 배열
+class Exercise6_20
+{
+    /*
+    (1) shuffle . 메서드를 작성하시오
+    */
+    public static void main(String[] args)
+    {
+        int[] original = {1,2,3,4,5,6,7,8,9};
+        System.out.println(java.util.Arrays.toString(original));
+        int[] result = shuffle(original);
+        System.out.println(java.util.Arrays.toString(result));
+    }
+}
+
+[6-20 풀이]
+코드 참조
+
