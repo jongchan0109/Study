@@ -34,3 +34,108 @@ class SutdaCard {
 [6-4 풀이]
 코드 참조
 
+[6-5] 다음과 같은 실행결과를 얻도록 Student클래스에 생성자와 info()를 추가하시오.
+class Exercise6_5 {
+    public static void main(String args[]) {
+        Student s = new Student(" ",1,1,100,60,76); 홍길동
+        System.out.println(s.info());
+    }
+}
+class Student {
+/*
+(1) . 알맞은 코드를 넣어 완성하시오
+*/
+}
+
+실행 결과
+홍길동,1,1,100,60,76,236,78.7
+
+[6-5 풀이]
+코드 참조
+
+
+[6-6] 두 점의 거리를 계산하는 getDistance()를 완성하시오.
+class Exercise6_6 {
+    // (x,y) (x1,y1) . 두 점 와 간의 거리를 구한다
+    static double getDistance(int x, int y, int x1, int y1) {
+/*
+(1) . 알맞은 코드를 넣어 완성하시오
+*/
+    }
+    public static void main(String args[]) {
+        System.out.println(getDistance(1,1,2,2));
+    }
+}
+
+[6-6 풀이]
+코드 참조
+
+
+[6-7] 문제 6-6에서 작성한 클래스메서드 getDistance()를 MyPoint클래스의 인스턴스메서드로 정의하시오.
+class MyPoint {
+    int x;
+    int y;
+    MyPoint(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+/*
+(1) getDistance . 인스턴스메서드 를 작성하시오
+*/
+}
+class Exercise6_7 {
+    public static void main(String args[]) {
+        MyPoint p = new MyPoint(1,1);
+// p (2,2) . 와 의 거리를 구한다
+        System.out.println(p.getDistance(2,2));
+    }
+}
+
+[6-7 풀이]
+코드 참조
+
+
+[6-8] 다음의 코드에 정의된 변수들을 종류별로 구분해서 적으시오.
+
+class PlayingCard {
+    int kind;
+    int num;
+    static int width;
+    static int height;
+    PlayingCard(int k, int n) {
+        kind = k;
+        num = n;
+    }
+    public static void main(String args[]) {
+        PlayingCard card = new PlayingCard(1,1);
+    }
+}
+
+[6-8 풀이]
+- 클래스 변수(static 변수) : width,height
+- 인스턴스 변수: kind, num
+- 지역 변수: k,m,card,args
+
+[6-9] 다음은 컴퓨터 게임의 병사(marine)를 클래스로 정의한 것이다. 이 클래스의 멤버 중에 static을 붙여야 하는 것은 어떤 것들이고 그 이유는 무엇인가?
+(단, 모든 병사의 공격력과 방어력은 같아야 한다.)
+class Marine {
+    int x=0, y=0; // Marine (x,y) 의 위치좌표
+    int hp = 60; // 현재 체력
+    int weapon = 6; // 공격력
+    int armor = 0; // 방어력
+    void weaponUp() {
+        weapon++;
+    }
+    void armorUp() {
+        armor++;
+    }
+    void move(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+[6-9 풀이]
+모든 병사의 공격력과 방어력은 같아야 하므로 weapon과 armor에 static를 붙여야 한다. 그리고 weapon과 armor에 관련된 기능을 가진 메서드들인 weaponUp()와 armorUp()도 static를 붙여야 한다.
+
+[6-10]
