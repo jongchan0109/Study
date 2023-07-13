@@ -146,3 +146,27 @@ Child() -> Child(int x) -> Parent() -> Parent(int x) -> Object()
 
 
 [7-8] 다음 중 접근제어자를 접근범위가 넓은 것에서 좁은 것의 순으로 바르게 나열한 것은?
+a. public-protected-(default)-private
+b. public-(default)-protected-private
+c. (default)-public-protected-private
+d. private-protected-(default)-public
+
+[7-8 풀이]
+a public -> protected -> (default) -> private
+
+
+[7-9] 다음 중 제어자 final을 붙일 수 있는 대상과 붙였을 때 그 의미를 적은 것이다. 옳지 않은 것은? (모두 고르시오)
+a. 지역변수 - 값을 변경할 수 없다.
+b. 클래스 - 상속을 통해 클래스에 새로운 멤버를 추가할 수 없다.
+c. 메서드 - 오버로딩을 할 수 없다.
+d. 멤버변수 - 값을 변경할 수 없다.
+
+[7-9 풀이]
+c. 메소드 - 오버라이딩을 할 수 없다.
+
+
+[7-10] MyTv2클래스의 멤버변수 isPowerOn, channel, volume을 클래스 외부에서 접근할 수 없도록 제어자를 붙이고, 대신
+이 멤버변수들의 값을 어디서나 읽고 변경할 수 있도록 getter와 setter 메소드를 추가하라.
+
+[7-10 풀이]
+코드 참조
