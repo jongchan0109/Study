@@ -332,3 +332,16 @@ void attack(Movable f) {
 
 [7-22] 아래는 도형을 정의한 Shape클래스이다. 이 클래스를 조상으로 하는 Circle클래스와 Rectangle클래스를 작성하시오.
 이 때, 생성자도 각 클래스에 맞게 적적히 추가해야 한다.
+
+(1)  클래스명  : Circle
+     조상클래스 : Shape
+     멤버변수  : double r - 반지름
+
+(2)  클래스명  : Rectangle
+     조상클래스 : Shape
+     멤버변수  : double width - 폭
+               double height - 넓이
+     메소드명   : isSquare
+     기   능   : 정사각형인지 아닌지를 알려준다.
+     반환타입   : boolean
+     매개변수   : 없음
