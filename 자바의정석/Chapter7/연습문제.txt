@@ -278,9 +278,57 @@ e. fe는 FireEngine 인스턴스를 가리키므로 Ambulance와는 관련 없�
    매개변수 : Product p - 구입할 물건
 
 1. 메소드명 : summary
-   기   능 : 구입한 물건의 목록과 사용금액, 남으 금액을 출력한다.
+   기   능 : 구입한 물건의 목록과 사용금액, 남은 금액을 출력한다.
    반환타입 : 없음
    매개변수 : 없음
 
 [7-19 풀이]
 코드 참조
+
+
+[7-20] 다음의 코드를 실행한 결과를 적으시오.
+class Exercise7_20 {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        Child c = new Child();
+        System.out.println("p.x = " + p.x);
+        p.method();
+        System.out.println("c.x = " + c.x);
+        c.method();
+    }
+}
+class Parent {
+    int x = 100;
+    void method() {
+        System.out.println("Parent Method");
+    }
+}
+class Child extends Parent {
+    int x = 200;
+    void method() {
+        System.out.println("Child Method");
+    }
+}
+
+[7-20 풀이]
+p.x = 100
+Child Method
+c.x = 200
+Child Method
+
+
+[7-21] 다음과 같이 attack 메소드가 정의되어 있을 때, 이 메소드의 매개변수로 가능한 것 두 가지를 적으시오.
+interface Movable {
+void move(int x, int y);
+}
+void attack(Movable f) {
+/* */ 내용 생략
+}
+
+[7-21 풀이]
+1. null
+2. Movable 를 구현한 클래스 또는 그 자손의 인스턴스
+
+
+[7-22] 아래는 도형을 정의한 Shape클래스이다. 이 클래스를 조상으로 하는 Circle클래스와 Rectangle클래스를 작성하시오.
+이 때, 생성자도 각 클래스에 맞게 적적히 추가해야 한다.
