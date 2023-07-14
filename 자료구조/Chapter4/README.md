@@ -23,9 +23,17 @@
       - 리스트에 저장되어 있는 데이터의 수를 반환한다.
     + void SetSortRule(List *plist, int (*comp)(LData d1, LData d2));
       - 리스트에 정렬의 기준이 되는 함수를 등록한다.
-      
+
++ 새 노드를 추가할 때 머리에 추가하는 경우의 장단점
+  + 장점: 포인터 변수 tail이 불필요하다.
+  + 단점: 저장된 순서를 유지하지 않는다.
+
++ 새 노드를 추가할 때 꼬리에 추가하는 경우의 장단점
+  + 장점: 저장된 순서가 유지된다.
+  + 단점: 포인터 변수 tail이 필요하다.
+  
 + Code
-  + ArrayList 
-    + ArrayList.h
-    + ArrayList.c
-    + ListMain.c
+  + DLinkedList(정렬 기준 X) 
+    + DLinkedList.h
+    + DLinkedList.c
+    + DLinkedListMain.c
