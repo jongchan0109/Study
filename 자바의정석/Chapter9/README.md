@@ -93,11 +93,39 @@
   c. : c로 시작하는 두 자리 문자열
   c.* : c로 시작하는 모든 문자열(기호 포함)
   c\. : c.와 일치하는 문자열 '.'은 패턴작성에 사용되는 문자이므로 escape문자인 '\'를 사용해야 한다.
+  c\d, c[0-9] : c와 숫자로 구성된 두 자리 문자열
+  c.*t : c로 시작하고 t로 끝나는 모든 문자열
+  [b|c].*, [bc].*, [b-c].*: b또는 c로 시작하는 문자열
+  [^b|c].*, [^bc].*, [^b-c].* : b또는 c로 시작하지 않는 문자열
+  .*a.* : a를 포함하는 모든 문자열 (*: 0 또는 그 이상의 문자)
+  .*a.+ : a를 포함하는 문자열 (+: 1또는 그 이상의 문자)
+  [b|c].{2} : b또는 c로 시작하는 세 자리 문자열
+  ```
+  + 정규식의 일부를 괄호로 나누어 묶어서 그룹화 할 수 있다.
 
 + 2.4 java.util.Scanner클래스
+  + Scanner는 화면, 파일, 문자열과 같은 입력소스로부터 문자데이터를 읽오으는데 도움을 줄 목적으로 JDK1.5부터 추가되었다.
+  + 입력받을 값이 숫자라면 nextLine()대신 nextInt(), nextLong()과 같은 메소드를 사용할 수 있다.
+  + Scanner는 정규식 표현을 이용한 라인단위의 검색을 지원하며 구분자에도 정규식 표현을 사용할 수 있다.
 
 + 2.5 java.util.StringTokenizer클래스
+  + StringTokenizer는 긴 문자열을 지정된 구분자를 기준으로 토큰이라는 여러 개의 문자열을 잘라내는 데 사용된다.
+  ```
+  StringTokenizer(String str, String delim) : 문자열(str)을 지정된 구분자(delim)으로 나누는 StringTokenizer를 생성한다.(구분자는 토큰으로 간주되지 않음)
+  StringTokenizer(String str, String delim, boolean returnDelims) : retrunDelims의 값을 true로 하면 구분자도 토큰으로 간주된다.
+  int countTokens() : 전체 토큰의 수를 반환한다.
+  boolean hasMoreTokens() : 토큰이 남아있는지 알려준다.
+  String nextToken() : 다음 토큰을 반환한다.
+  ```
+  + StringTokenizer는 단 한 문자의 구분자만 사용할 수 있기 때문에, "+-*/=()" 전체가 하나의 구분자가 아니라 각각이 하나의 구분자가 된다.
 
 + 2.6 java.math.BigInteger클래스
+  + 정수형으로 표현할 수 있는 값의 한계가 있으므로, 더 큰수를 표현하기 위해 BigInteger을 사용한다.
+  + BigInteger는 내부적으로 int배열을 사용해서 값을 다루므로, 성능이 long타입보다 떨어진다.
 
 + 2.7 java.math.BigDecimal클래스
+  + double타입으로 표현할 수 있는 값은 상당히 넓지만, 정밀도가 최대 13자리 밖에 되지 않고, 오차를 피할 수 없기 때문에 BigDecimal을 사용할 수가 있다.
+  + BigDecimal은 실수형과 달리 정수를 이용해서 실수를 표현한다.
+  + 정수 x 10^(-scale)
+  + 정수를 표현할 때는 BigInteger 인스턴스를 사용하므로, 정밀도가 매우 높다.
+  + 무한소수인 경우, 반올림 모드를 지정해주지 않으면 ArithmeticException이 발생한다.
