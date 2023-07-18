@@ -15,3 +15,34 @@ p1.equals(p2)?true
 
 [9-2 풀이]
 코드 참조
+
+
+[9-3] 다음과 같은 실행결과가 나오도록 코드를 완성하시오.
+fullPath:c:\jdk1.8\work\PathSeparateTest.java
+path:c:\jdk1.8\work
+fileName:PathSeparateTest.java
+
+[9-3 풀이]
+코드 참조
+
+
+[9-4] 다음과 같이 정의된 메소드를 작성하고 테스트하시오.
+메소드명 : printGraph
+기   능 : 주어진 배열에 담긴 값만큼 문자를 가로로 출력한 후, 값을 출력한다.
+반환타입 : 없음
+매개변수 : int[] dataArr - 출력할 그래프의 데이터
+         char ch - 그래프로 출력할 문자
+
+[9-4 풀이]
+코드 참조
+
+
+[9-5] 다음과 같이 정의된 메소드를 작성하고 테스트하시오.
+메소드명 : count
+기   능 : 주어진 문자열(src)에 찾으려는 문자열(target)이 몇 번 나오는지 세어서 반환한다.
+반환타입 : int
+매개변수 : String src
+         String target
+
+[9-5 풀이]
+코드 참조
