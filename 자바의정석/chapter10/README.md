@@ -52,4 +52,65 @@
 + 위의 패키지들에 속한 클래스들의 가장 큰 특징은 변경이 불가능하다는 것이다.
 
 + 3.1 java.time패키지의 핵심 클래스
-  + 
+  + 날짜와 시간을 하나로 표현하는 Calendar클래스와 달리, java.time 패키지에서는 날짜와 시간을 별도의 클래스로 분리해 놓았다.
+  + 시간을 표현할 대는 LocatTime 클래스를, 날짜를 표현할 때는 LocalDate클래스를, 날짜와 시간을 표현할 때는 LocatDateTime클래스를 사용하면 된다.
+  + 시간대까지 다뤄야 한다면, ZonedDateTIme 클래스를 사용한다.
+  + java.time 패키지에 속한 클래스의 객체를 생성하는 가장 기본적인 방법은 now()와 of()를 사용하는 것이다.
+  + now()는 현재 날짜와 시간을 저장하는 객체를 생성하고, of()는 단순히 해당 필드의 값을 순서대로 지정해 주기만 하면 된다.
+  + 날짜와 시간을 표현하는 클래스들은 모두 Temporal,TemporalAccessor,TemporalAdjuster 인터페이스를 구현했고, Duration,period는 TemporalAmount 인터페이스를 구현하였다.
+  + 날짜와 시간의 단위를 정의해 놓은 것이 TemporalUnit 인터페이스이고, 이 인터페이스를 구현한 것이 열거형 ChronoUnit이다.
+
++ 3.2 LocalDate와 LocalTime
+  + LocalDate와 LocalTime는 java.time 패키지의 가장 기본이 되는 클래스이다.
+  + 객체를 생성하는 방법은 now()와 of()가 있으며 둘 다 static 메소드이다.
+  ```
+  LocalDate today = LocalDate.now();
+  LocalTime now = LocalTime.now();
+
+  LocalDate birthDate = LocalDate.of(1999,12,31);
+  LocalTime bitrhTime = LocalTime.of(23,59,59);
+  ```
+  + LocalDate에서 month의 범위는 Calendar과 달리 1~12이고, 요일은 월요일이 1, 화요일이 2, ... 일요일이 7이다.
+  + 날짜와 시간에서 특정 필드 값을 변경하려면, wtih로 시작하는 메소드를 사용하면 된다. java.time 패키지는 불변이므로, 새로운 객체를 생성해서 반환하여 변환한다.
+  + 날짜와 시간을 비교하기 위해 isAfter(), isBefore(), isEqual()을 사용할 수 있다.
+
++ 3.3 Instant
+  + Instant는 에포크 타임(EPOCH TIME, 1970-01-01 00:00:00 UTC)부터 경과된 시간을 나노초 단위로 표현한다.
+  + Instant를 생성할 때는 now()와 ofEpochSecond()를 사용한다.
+  + Instant는 시간을 초 단위와 나노초 단위로 나누어 저장한다.
+  + Instant는 항상 UTC(+00:00)를 기준으로 하기 때문에 LocalTime와 차이가 있을 수 있다 (ex: 한국 +09:00)
+
++ 3.4 LocalDateTime과 ZonedDateTime
+  + LocalDate와 LocalTime으로 LocalDateTime을 만들 수 있다.
+  ```
+  LocalDate date = LocalDate.of(2015,12,31);
+  LocalTime time = LocalTime.of(12,34,56);
+
+  LocalDateTime dt = LocalDateTime.of(date,time);
+  LocalDateTime dt2 = date.atTime(time);
+  LocalDateTime dt3 = time.atDate(date);
+  etc...
+  ```
+  + 반대로 LocalDateTime을 LocalDate 또는 LocalTIme으로 변경할 수 있다.
+  ```
+  LocalDateTime dt = LocalDateTime.of(2015,12,31,12,34,56);
+  LocalDate date = dt.toLocalDate();
+  LocalTime time = dt.toLocalTime();
+  ```
+  + LocalDateTime에 시간대(time-zone)를 추가하면, ZonedDateTime이 된다.
+ 
++ 3.5 TemporalAdjusters
+  + plus(), minus()와 같이 메소드로 날짜와 시간을 계산할 수 있지만, 자주 쓰일만한 날짜 계산들을 대신 해주는 메소드를 정의해 놓은 것이 TemporalAdjusters클래스이다.
+  + 예시
+  + 필요하면 자주 사용되는 날짜 계산을 해주는 메소드를 직접 만들 수도 있다.
+  + LocalDate, LocalTime 등 날짜와 시간에 관련된 클래스에 포함되어 있는 with으로 할 수 있는데, with(TemporalAdjuster adjuster)에서 adjuster은 TemporalAdjuster 인터페이스를 구현한 클래스의 객체를 매개변수로 제공해야 한다.
+ 
++ 3.6 Period와 Duration
+  + Period는 날짜의 차이를, Duration은 시간의 차이를 계산하기 위한 것이다.
+  + between()으로 두 시간, 날짜 사이의 차이를 계산할 수 있다.
+  + between()과 until()은 거의 같은 일은 하지만, between은 static메소드이고, until()은 인스턴스 메소드이다. Period는 년월일을 분리해서 저장하기 때문에, D-day를 구하려는 경우에는 두 개의 매개변수를 받는 until()을 사용하는 것이 낫다.
+  + Period, Duration에서 특정 필드의 값을 얻을 때는 get()을 사용한다.
+  + plus(), minus()외에 곱셈과 나눗셈을 위한 메소드도 있다.
+  + Peroid에는 나눗셈을 위한 메소드가 없는데, Peroid는 날짜의 기간을 표현한 것이기 때문에 나눗셈을 위한 메소드가 별로 유용하지 않기 때문이다.
+  + 다른 단위로 변환하는 메소드들도 있다.
+  + 예시)
