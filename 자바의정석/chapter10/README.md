@@ -114,3 +114,15 @@
   + Peroid에는 나눗셈을 위한 메소드가 없는데, Peroid는 날짜의 기간을 표현한 것이기 때문에 나눗셈을 위한 메소드가 별로 유용하지 않기 때문이다.
   + 다른 단위로 변환하는 메소드들도 있다.
   + 예시)
+
++ 3.7 파싱과 포맷
+  + 형식화와 관련된 클래스들은 java.time.format 패키지에 들어있는데, 이 중에서 DateTimeFormatter가 핵심이다.
+  + 예시)
+  + DateTimeFormatter의 static메소드 ofLocalizedDate(), ofLocalizedTime(), ofLocalizedDateTime()은 로케일(locale)에 종속적인 포맷터를 생성한다.
+  + 예시)
+  + 문자열을 날짜 또는 시간으로 변환하려면 static메소드 parse()를 사용하면 된다.
+  ```
+  stiatc LocalDateTime parse(CharSequence text)
+  stiatc LocalDateTime parse(CharSequence text, DateTimeFormatter formmater)
+  ```
+  + 위의 2개가 자주 쓰인다.
