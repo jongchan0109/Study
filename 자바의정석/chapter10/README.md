@@ -59,12 +59,47 @@
 
 + 2.3 ChoiceFormat
   + ChioceFormat은 특정 범위에 속하는 값을 문자열로 변환해준다. 연속적 또는 불연속적인 범위의 값들을 처리하는데 있어서 if문이나 switch문은 적절하지 못한 경우가 많다.
-  + 예시
+  + 예시)
+  ```
+  public static void main(String[] args){
+    double[] limits = {60,70,80,90};
+    String[] grades = {"D","C","B","A"};
+    int[] scores = {100,95,88,70,52,60,70};
+    ChoiceFormat form = new ChoiceFormat(limits,grades);
+    for(int i=0;i<scores.length;i++){
+      System.out.println(scores[i]+":"+form.format(scores[i]));
+    }
+  }
 
+  실행 결과:
+  100:A
+  95:A
+  88:B
+  70:C
+  52:D
+  60:D
+  70:C
+  ```
+  
 + 2.4 MessageFormat
   + MessageFormat은 데이터를 정해진 양식에 맞게 출력할 수 있도록 도와준다.
   + 데이터가 들어갈 자리를 마련해 놓은 양식을 미리 작성하고 프로그램을 이용해서 다수의 데이터를 같은 양식으로 출력할 때 사용하면 좋다.
   + 예시
+  ```
+  public static void main(String[] args){
+    String msg = "Name: {0} \nTel: {1} \nAge: {2} \nBirthday: {3}";
+
+    Object[] arguments = {"이자비","02-123-1234","27","07-09"};
+
+    String result = MessageFormat.format(msg,arguments);
+    System.out.println(result);
+  }
+    실행 결과
+    Name: 이자바
+    Tel: 02-123-1234
+    Age: 27
+    BirthDay: 07-09
+  ```
 
 ## 3. java.time패키지
 + Java의 탄생부터 지금까지 날짜와 시간을 다루는데 사용해왔던, Date와 Calendar가 가지고 있떤 단점들을 해소하기 위해 JDK1.8부터 'java.time'패키지가 추가되었다.
@@ -125,7 +160,24 @@
  
 + 3.5 TemporalAdjusters
   + plus(), minus()와 같이 메소드로 날짜와 시간을 계산할 수 있지만, 자주 쓰일만한 날짜 계산들을 대신 해주는 메소드를 정의해 놓은 것이 TemporalAdjusters클래스이다.
-  + 예시
+  + 유용한 메소드들
+  
+  |메소드|설명|
+  |------|---|
+  |firstDayOfNextYear()|다음 해의 첫 날|
+  |firstDayOfNextMonth()|다음 달의 첫 날|
+  |firstDayOfYear()|올 해의 첫 날|
+  |firstDayOfMonth()|이번 달의 첫 날|
+  |lastDayOfYear()|올 해의 마지막 날|
+  |lastDayOfMonth()|이번 달의 마지막 날|
+  |firstInMonth(DayOfWeek dayOfWeek)|이번 달의 첫번째 ?요일|
+  |lastInMonth(DayOfWeek dayOfWeek)|이번 달의 마지막 ?요일|
+  |previous(DayOfWeek dayOfWeek)|지난 ?요일(당일 미포함)|
+  |previousOrSame(DayOfWeek dayOfWeek)|지난 ?요일(당일 포함)|
+  |next(DayOfWeek dayOfWeek)|다음 ?요일(당일 미포함)|
+  |nextOrSame(DayOfWeek dayOfWeek)|다음 ?요일(당일 포함)|
+  |dayOfWeekInMonth(DayOfWeek dayOfWeek)|이번 달의 n번째 ?요일|
+  
   + 필요하면 자주 사용되는 날짜 계산을 해주는 메소드를 직접 만들 수도 있다.
   + LocalDate, LocalTime 등 날짜와 시간에 관련된 클래스에 포함되어 있는 with으로 할 수 있는데, with(TemporalAdjuster adjuster)에서 adjuster은 TemporalAdjuster 인터페이스를 구현한 클래스의 객체를 매개변수로 제공해야 한다.
  
@@ -137,7 +189,6 @@
   + plus(), minus()외에 곱셈과 나눗셈을 위한 메소드도 있다.
   + Peroid에는 나눗셈을 위한 메소드가 없는데, Peroid는 날짜의 기간을 표현한 것이기 때문에 나눗셈을 위한 메소드가 별로 유용하지 않기 때문이다.
   + 다른 단위로 변환하는 메소드들도 있다.
-  + 예시)
 
 + 3.7 파싱과 포맷
   + 형식화와 관련된 클래스들은 java.time.format 패키지에 들어있는데, 이 중에서 DateTimeFormatter가 핵심이다.
