@@ -12,31 +12,30 @@
   + Collection 인터페이스
     |메소드|설명|
     |------|---|
-    |boolean add(Object o)|지정된 객체를 Collection에 추가한다.|
+    |boolean add(Object o)|지정된 객체(o)를 Collection에 추가한다.|
     |boolean add(Collection c)|지정된 Collection(c)의 객체들을 Collection에 추가한다.|
     |void clear()|Collection의 모든 객체를 삭제한다.|
-    |boolean contains(Object o)|년의 몇 번째 주(1\~53)|
-    |W|월의 몇 번째 주(1\~5)|4|
-    |D|년의 몇 번째 일(1\~366)|100|
-    |d|월의 몇 번째 일(1\~31) |15|
-    |F|월의 몇 번째 요일(1\~5) |1|
-    |E|요일|월|
-    |a|오전/오후(AM,PM)|PM|
-    |H|시간(0\~23)|20|
-    |k|시간(1\~24)|13|
-    |K|시간(0\~11)|10|
-    |h|시간(1\~12)|11|
-    |m|분(0\~59)|35|
-    |s|초(0\~59)|55|
-    |S|천분의 일초(0\~999)|253|
-    |z|Time zone(General time zone)|GMT+9:00|
-    |Z|Time zone(RFC 822 time zone)|+0900|
-    |'|escape문자(특수문자를 표현하는데 사용)|없음|
+    |boolean contains(Object o)|지정된 객체(o)가 Collection에 포함되어 있는지 확인한다.|
+    |boolean contains(Collection c)|지정된 Collection(c)의 객체들이 Collection에 포함되어 있는지 확인한다.|
+    |boolean equals(Object o)|동일한 Collection인지 비교한다.|
+    |int hasCode()|Collection의 hash code를 반환한다.|
+    |boolean isEmpty()|Collection이 비어있는지 확인한다.|
+    |iterator iterator()|Collection의 iterator를 얻어서 반환한다.|
+    |boolean remove(Object o)|지정된 객체를 삭제한다.|
+    |boolean removeAll(Collection c)|지정된 Collection에 포함된 객체들을 삭제한다.|
+    |boolean retainAll(Collection c)|지정된 Collection에 포함된 객체만을 남기고 다른 객체들은 Collection에서 삭제한다. 이 작업으로 인해 Collection에 변화가 있으면 true를 그렇지 않으면 false를 반환한다.|
+    |int size()|Collection에 저장된 객체의 개수를 반환한다.|
+    |Object[] toArray()|Collection에 저장된 객체를 객체배열(Object[])로 반환한다.|
+    |Object[] toArray(Object[] a)|저ㅣ정된 배열에 Collection의 객체를 저장해서 반환한다.|
+    
   
-  + Date는 날짜와 시간을 다룰 목적으로 JDK1.0부터 제공되어온 클래스이다. Date클래스의 기능이 부족했기 때문에 Calendar라는 새로운 클래스를 JDK1.1부터 제공하기 시작했다.
-  + Calendar는 추상클래스이기 때문에 직접 객체를 생성할 수 없고, 메소드를 통해서 완전히 구현된 클래스의 인스턴스를 얻어야 한다.
-  + Calendar를 상속받아 완전히 구현한 클래스로는 GregorianCalendar와 BuddhistCalendar가 있는데, getInstance()는 시스템의 국가와 지역설정을 확인해서 태국인 경우에는 BuddhistCalendar의 인스턴스를 반환하고, 그 외에는 GregorianCalendar의 인스턴스를 반환한다.
-  + Calendar가 새로 추가되면서 Date는 대부분의 메소드가 'deprecated'되어 잘 사용되지 않는다. 그럼에도 불구하고 여전히 Date를 필요로 하는 메소드들이 있기 때문에 Calendar를 Date로 또는 그 반대로 변환할 일이 생긴다.
+  + List 인터페이스
+    |메소드|설명|
+    |------|---|
+    |void add(int index, Object element)<br>boolean addAll(int index,Collection c)|지정된 위치(index)에 객체(element)또는 컬렉션에 포함된 객체들을 추가한다.|
+    |Object get(int index)|지정된 위치(index)에 있는 객체를 반환한다.|
+    |int indexOf(Object o)|지정된 객체의 위치(index)를 반환한다.|
+    
   ```
   Calendar cal = Calendar.getInstance();
   Date d = new Date(cal.getTimeInMillis());
