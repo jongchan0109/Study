@@ -1,1 +1,60 @@
-[11-1] 다음은 정수집합 1,2,3,4와 3,4,5,6의 교집합, 차집합, 합집합을 구하는 코드이다. 코드를 
+[11-1] 다음은 정수집합 1,2,3,4와 3,4,5,6의 교집합, 차집합, 합집합을 구하는 코드이다. 코드를 완성하여 실행결과와 같은 결과를 출력하시오.
+
+[11-1 풀이]
+코드 참조
+
+
+[11-2] 다음 코드의 실행결과를 적으시오.
+
+import java.util.*;
+class Exercise11_2 {
+    public static void main(String[] args) {
+        ArrayList list = new ArrayList();
+        list.add(3);
+        list.add(6);
+        list.add(2);
+        list.add(2);
+        list.add(2);
+        list.add(7);
+        HashSet set = new HashSet(list);
+        TreeSet tset = new TreeSet(set);
+        Stack stack = new Stack();
+        stack.addAll(tset);
+        while(!stack.empty())
+            System.out.println(stack.pop());
+    }
+}
+
+[11-2 풀이]
+7
+6
+3
+2
+
+
+[11-3] 다음 중 ArrayList에서 제일 비용이 많이 드는 작업은? 단, 작업도중에 ArrayList의 크기 변경이 발생하지 않는다고 가정한다.
+a. 첫 번째 요소 삭제
+b. 마지막 요소 삭제
+c. 마지막에 새로운 요소 추가
+d. 중간에 새로운 요소 추가
+
+[11-3 풀이]
+a. 첫 번째 요소 삭제
+
+
+[11-4] LinkedList클래스는 이름과 달리 실제로는 이중 원형 연결리스트로 구현되어 있다. LinkedList인스턴스를 생성하고 11개의 요소를 추가했을 때, 이 요소 중 접근시간(access time)이 가장 오래 걸리는 요소는 몇 번째 요소인가?
+
+[11-4 풀이]
+여섯 번째 요소
+
+
+[11-5] 다음에 제시된 Student클래스가 Comparable인터페이스를 구현하도록 변경해서 이름(name)이 기본 정렬기준이 되도록 하시오.
+
+[11-5 풀이]
+코드 참조
+
+
+[11-6] 다음의 코드는 성적평균의 범위별로 학생 수를 세기 위한 것이다. TreeSet이 학생들의 평균을 기준으로 정렬하도록 compare(Object o1, Object o2)와 평균점수의 범위를 주면 해당 범위에 속한 학생의 수를 반환하는 getGroupCount()를 완성하라.
+
+[11-6 풀이]
+코드 참조
