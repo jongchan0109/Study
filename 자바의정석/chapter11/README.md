@@ -28,7 +28,6 @@
     |Object[] toArray()|Collection에 저장된 객체를 객체배열(Object[])로 반환한다.|
     |Object[] toArray(Object[] a)|저ㅣ정된 배열에 Collection의 객체를 저장해서 반환한다.|
     
-  
   + List 인터페이스
     |메소드|설명|
     |------|---|
@@ -86,3 +85,41 @@
   + 실제로 LinkedList클래스는 이름과 달리 더블 링크드 리스트로 구현되어 있다.
 
 + 1.4 Stack과 Queue
+  + 스택은 마지막에 저장한 데이터를 가장 먼저 꺼내게 되는 LIFO(Last In First Out)구조로 되어 있고, 큐는 처음에 저장한 데이터를 가장 먼저 꺼내게 되는 FIFO(First In First Out)구조로 되어 있다.
+  + 순차적으로 데이터를 추가하고 삭제하는 스택에는 ArrayList와 같은 배열기반의 컬렉션 클래스가 적합하고, 항상 첫 번째 저장된 데이터를 삭제하는 Queue는 LinkedList로 구현하는 것이 더 적합하다.
+  + 스택의 활용 예 - 수식계산, 수식괄호검사, 워드프로세서의 undo/redo, 웹브라우저의 뒤로/앞으로
+  + 큐의 활용 예 - 최근사용문서, 인쇄작업 대기목록, 버퍼(buffer)
+  + PriorityQueue
+    +Queue인터페이스의 구현체 중의 하나로, 저장한 순서에 관계없이 우선순위가 높은 것부터 꺼내게 된다는 특징이 있다.
+  + Deque
+    + Queue의 변형으로, 한 쪽 끝으로만 추가/삭제할 수 있는 Queue와 같이 Deque은 양쪽 끝에 추가/삭제가 가능하다.
+   
++ 1.5 Iterator, ListIterator, Enumeration
+  + Iterator, ListIterator, Enumeration은 모두 컬렉션에 저장된 요소를 접근하는데 사용되는 인터페이스이다. Enumeration은 Iterator의 구버전이며, ListIterator는 Iterator의 기능을 향상 시킨 것이다.
+  + 컬렉션 프레임웍에서는 컬렉션에 저장되 요소들을 읽어오는 방법을 표준화하였다. 컬렉션에 저장된 각 요소에 접근하는 기능을 가진 Iterator인터페이스를 정의하고, Collection인터페이스에는 Iterator(Iterator를 구현한 클래스의 인스턴스)를 반환하는 iterator()를 정의하고 있다.
+  + 컬렉션 클래스에 대해 iterator()를 호출하여 Iterator를 얻은 다음 반복문, 주로 while문을 사용해서 컬렉션 클래스의 요소들을 읽어 올 수 있다.
+  + Map인터페이스를 구현한 컬렉션 클래스는 키와 값을 쌍으로 저장하고 있기 때문에 iterator()를 직접 호출할 수 없고, 그 대신 keySet()이나 entrySet()과 같은 메소드를 통해서 키와 값을 각각 따로 Set의 형태로 얻어 온 후에 다시 iterator()를 호출해야 Iterator를 얻을 수 있다.
+  + ListIterator는 Iterator를 상속받아서 기능을 추가한 것으로, 컬렉션의 요소에 접근할 때 Iterator는 단방향으로만 이동할 수 있는 데 반해 ListIterator는 양방향으로의 이동이 가능하다. 단, List인터페이스를 구현한 컬렉션에서만 사용할 수 있다.
+
++ 1.6 Arrays
+  + Arrays클래스에는 배열을 다루는데 유용한 메소드가 정의되어 있다.
+  + 배열의 복사 - copyOf(), copyOfRange(): copyOf()는 배열 전체를, copyOfRange()는 배열의 일부를 복사해서 새로운 배열을 만들어 반환한다.
+  + 배열 채우기  - fill(), setAll(): fill()은 배열의 모든 요소를 지정된 값으로 채운다. setAll()은 배열을 채우는데 사용할 함수형 인터페이스를 매개변수로 받는다.
+  + 배열의 정렬과 검색 - sort(), binarySearch(): sort()는 배열을 정렬할 때, 그래고 배열에 저장된 요소를 검색할 때는 binarySearch()를 사용한다.
+  + 배열을 List로 변환 - asList(Object... a): asList()는 배열을 List에 담아서 반환한다. asList()가 반환한 List의 크기를 변경할 수 없다.
+ 
++ 1.7 Comparator와 Comparable
+  + Comparator와 Comparable은 모두 인터페이스로 컬렉션을 정렬하는데 필요한 메소드를 정의하고 있다.
+  + Comparable: 기본 정렬기준을 구현하는데 사옹.
+  + Comparator: 기본 정렬기준 외에 다른 기준으로 정렬하고자할 때 사용
+
++ 1.8 HashSet
+  + HashSet은 Set인터페이스를 구현한 가장 대표적인 컬렉션이며, Set인터페이스의 특징대로 HashSet은 중복된 요소를 저장하지 않는다.
+  + HashSet에 새로윤 요소를 추가할 때는 add메소드나 addAll메소드를 사용하는데, 만일 HashSet에 이미 저장되어 있는 요소와 중복된 요소를 추가하고자 한다면 이 메소드들은 false를 반환함으로써 중복된 요소이기 때문에 추가에 실패했다는 것을 알린다.
+  + Set을 구현한 컬렉션 클래스는 List를 구현한 컬렉션 클래스와 달리 순서를 유지하지 않기 때문에 저장한 순서와 다를 수 있다.
+  + 만일 중복을 제거하는 동시에 저장한 순서를 유지하고자 한다면 HashSet 대신 LinkedHashSet을 사용해야 한다.
+  + HashSet의 add메소드는 새로윤 요소를 추가하기 전에 기존에 저장된 요소와 같은 것인지 판별하기 위해 추가하려는 요소의 equals()와 hashCode()를 호출하기 때문에 equals()와 hashCode()를 목적에 맞게 오버라이딩해야 한다.
+  + 오버라이딩을 통해 작성된 HashCode()는 다음의 세 가지 조건을 만족 시켜야 한다.
+    1. 실행 중인 애플리케이션 내의 동일한 객체에 대해서 여러번 hashCode()를 호출해도 동일한 int값을 반환해야 한다. 하지만, 실행시마다 동일한 int값을 반환할 필요는 없다.
+    2. equals메소드를 이용한 비교에 의해서 true를 얻은 두 객체에 대해 각각 hashCode()를 호출해서 얻은 결과는 반드시 같아야 한다.
+    3. equals메소드를 호출했을 때 false를 반환하는 두 객체는 hashCode() 호출에 대해 같은 int값을 반환하는 경우가 있어도 괜찮지만, 해싱(hashing)을 사용하는 컬렉션의 성능을 향상시키기 위해서는 다른 int값을 반환하는 것이 좋다.
