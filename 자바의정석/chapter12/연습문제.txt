@@ -47,3 +47,34 @@ class Box<T extends Fruit>{
   void setItem(T item) {this.item = item;}
   T getItem() {return item;}
 }
+
+a. Box<?> b = new Box();
+b. Box<?> b = new Box<>();
+c. Box<?> b = new Box<Object>();
+d. Box<Object> b = new Box<Fruit>();
+e. Box b = new Box<Fruit>();
+f. Box<? extends Fruit> b = new Box<Apple>();
+g. Box<? extends Object> b = new Box<? extends Fruit>();
+
+[12-3 풀이]
+c. Box<?> b = new Box<Object>(); // Box<T extends Fruit> 이므로 Object는 Fruit의 자손이 아니므로 불가능
+d. Box<Object> b = new Box<Fruit>(); // Object와 Fruit 타입 불일치
+g. Box<? extends Object> b = new Box<? extends Fruit>(); // new연산자는 타입이 명확해야 하므로 와일드 카드와 같이 사용 불가
+
+
+[12-4] 아래의 메소드는 두 개의 ArrayList를 매개변수로 받아서, 하나의 새로운 ArrayList로 병합하는 메소드이다. 이를 지네릭 메소드로 변경하시오.
+
+public static ArrayList<? extends Product> merge(ArrayList<? extends Product> list, ArrayList<? extends Product> list2){
+  ArrayList<? extends Product> newList = new ArrayList<>(List);
+  newList.add(list2);
+  return newList;
+}
+
+[12-4 풀이]
+
+public static <? extends Product> ArrayList<T> merge(ArrayList<T> list, ArrayList<T> list2){
+  ArrayList<T> newList = new ArrayList<>(list);
+  newList.add(list2);
+  return newList;
+}
+
