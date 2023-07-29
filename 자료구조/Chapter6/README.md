@@ -24,6 +24,8 @@
 
 + 2,3 스택의 배열, 연결 리스트 기반 구현
 
++ 4 계산기 프로그램 구현
+  + 스택을 이용하여 계산식을 계산하는 계산기 프로그램 구현
       
 + Code
   + ArrayBaseStack 
@@ -36,3 +38,13 @@
     + ListBaseStack.c
     + ListBaseStackMain.c
 
+  + InfixCalculator
+    + ListBaseStack.h
+    + ListBaseStack.c
+    + InfixToPostfix.h
+    + InfixToPostfix.c
+    + PostCalculator.h
+    + PostCalculator.c
+    + InfixCalculator.h
+    + InfixCalculator.c
+    + InfixCalculatorMain.c
