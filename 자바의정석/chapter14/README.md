@@ -65,7 +65,47 @@
   + 람다식은 이름이 없을 뿐, 객체인데도 Object타입으로 형변환 할 수 없고, 함수형 인터페이스로만 형변환 가능하다.
   + 굳이 Object타입으로 형변환하려면, 먼저 함수형 인터페이스로 변환해야 한다.
 
++ 1.4 java.util.function 패키지
+  + 대부분의 메소드는 타입이 비슷하기 때문에, java.util.function 패키지에 일반적으로 자주 쓰이는 형식의 메소드를 함수형 인터페이스로 미리 정의해 놓았다.
+  
+  |함수형 인터페이스|메소드|설명|
+  |---|--------|-----|
+  |java.lang.Runnable|void run()|매개변수도 없고, 반환값도 없음.|
+  |Supplier<T>|T get()|매개변수는 없고, 반환값만 있음|
+  |Consumer<T>|void accept(T t)|매개변수만 있고, 반환값이 없음|
+  |Function<T,R>|R apply(T t)|일반적인 함수, 하나의 매개변수를 받아서 결과를 반환|
+  |Predicate<T>|boolean test(T t)|조건식을 표현하는데 사용됨.<br>매개변수는 하나, 반환 타입은 boolean|
 
+  + 매개변수가 두 개인 함수형 인터페이스는 이름 앞에 접두사 'Bi'가 붙는다.
+
+  |함수형 인터페이스|메소드|설명|
+  |---|--------|-----|
+  |BiConsumer<T,U>|void accept(T t,U u)|두개의 매개변수만 있고, 반환값이 없음|
+  |BiFunction<T,U,R>|R apply(T t,U u)|두 개의 매개변수를 받아서 하나의 결과를 반환|
+  |BiPredicate<T,U>|boolean test(T t,U u)|조건식을 표현하는데 사용됨.<br>매개변수는 둘, 반환 타입은 boolean|
+
+  + 두 개 이상의 매개변수를 갖는 함수형 인터페이스가 필요하다면 직접 만들어서 써야한다.
+  + Function의 또 다른 변형으로 UnaryOperator와 BinaryOperator가 있는데, 매개변수의 타입과 반환타입이 일치한다는 점만 제외하고는 Function과 같다.
+
+  |함수형 인터페이스|메소드|설명|
+  |---|--------|-----|
+  |UnaryOperator<T>|T apply(T t)|Function의 자손, Function과 달리 매개변수와 결과의 타입이 같다.
+  |BinaryOperator<T>|T apply(T t,T t)|BiFunction|의 자손, BiFunction과 달리 매개변수와 결과의 타입이 같다.|
+
+  + 컬렉션 프레임웍의 인터페이스에 다수의 디폴트 메소드가 추가되었는데, 그 중의 일부는 함수형 인터페이스를 사용한다.
+ 
+  |인터페이스|메소드|설명|
+  |---|--------|-----|
+  |Collection|boolean removeIf(Predicate<E> filter)|조건에 맞는 요소를 삭제|
+  |List|void repalceAll(UnaryOperator<E> operator)|모든 요소를 변환하여 대체|
+  |Iterable|void forEach(Consumer<T> action)|모든 요소에 작업 action을 수행|
+  |Map|V compute(K key, BiFunction<K,V,V> f)|지정된 키의 값에 작업 f를 수행|
+  |Map|V computeIfAbsent(K key, Function<K,V> f)|키가 없으면, 작업 f 수행 후 추가|
+  |Map|V computeIfPresent(K key, BiFunction<K,V,V> f)|지정된 키가 있을 때, 작업 f수행|
+  |Map|V merge(K key, V value, BiFunction<V,V,V> f)|모든 요소에 병합작업 f를 수행|
+  |Map|void forEach(BiConsumer<K,V> action)|모든 요소에 작업 action을 수행|
+  |Map|void repalceAll(BiFunction<K,V,V> f)|모든 요소에 치환작업 f를 수행|
+  
 
 ## 2. 쓰레드의 구현과 실행
 
