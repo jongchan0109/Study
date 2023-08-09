@@ -116,4 +116,26 @@
   |IntFunction<R>|R apply(T t,U u)|AFunction은 입력이 A타입이고, 출력은 지네릭 타입|
   |ObjIntConsumer<T>|void accept(T t,U u)|ObjAFunction은 입력이 T,A타입이고, 출력은 없다.|
 
-  
++ 1.5 Function의 합성과 Predicate의 결합
+  + 두 람다식을 합성해서 새로운 람다식을 만들 수 있다.
+  + 함수 f,g가 있을 때 f.andThen(g)는 함수 f를 먼저 적용하고, 그다음에 함수 g를 적용한다.
+  + f.compose(g)는 반대로 g를 먼저 적용하고 f를 적용한다.
+  ```
+  Function<String,Integer> f = (s) -> Integer.toBinaryString(i);
+  Function<Integer,String> g = (i) -> Integer.toBinaryString(i);
+  Function<String,String> h = f.andThen(g);
+  ```
+  + 문자열을 숫자로 변환하는 함수 f와 숫자를 2진 문자열로 변환하는 함수 g를 합성하여 새로운 함수 h를 만들어낼 수 있다.
+  + idntity()는 함수를 적용하기 이전과 이후가 동일한 '항등 함수'가 필요할 때 사용한다.
+  + 여러 조건식을 논리 연산지로 연결해서 하나의 식을 구성할 수 있는 것처럼, 여러 Predicate를 and(), or(), negate()로 연결해서 하나의 새로운 Predicate로 결합할 수 있다.
+  ```
+  Predicate<Integer> p = i -> i < 100;
+  Predicate<Integer> q = i -> i < 200;
+  Predicate<Integer> r = i -> i % 2 == 0;
+  Predicate<Integer> notP = p.negate(); // i >= 100
+  Predicate<Integer> all = notP.and(q.or(r)); // 100 <= i && (i < 200 || i % 2 ==0)
+  ```
+  + static메소드인 isEqual()은 두 대상을 비교하는 Predicate를 만들 때 사용한다.
+
++ 1.6 메소드 참조
+  + 람다식이 하나의 메소드만 호출하는 경우에는 '메소드 참조(method reference)'라는 방법으로 람다식을 간략히 할 수 있다.
