@@ -159,3 +159,92 @@
   + 최종 연산은 스트림의 요소를 소모하면서 연산을 수행하므로 단 한번만 연산이 가능하다.
   + 스트림 연산에서 중요한 점은 최종 연산이 수행되기 전까지는 중간 연산이 수행되지 않는다.
   + 요소의 타입이 T인 스트림은 기본적으로 Stream<T>이지만, 오토박싱&언박싱으로 인한 비효율을 줄이기 위해 데이터 소스의 요소를 기본형으로 다루는 스트림, IntStraem, LongStream, DoubleStream이 제공된다.
+
++ 2.2 스트림 만들기
+  + 스트림의 소스가 될 수 잇는 대상은 배열, 컬렉션, 임의의 수 등 다양하다.
+  + 컬렉션의 최고 조상인 Collection에 stream()이 정의되어 있다. 그래서 Collection의 자손인 List와 Set을 구현한 컬렉션 클래스들은 모두 이 메소드로 스트림을 생성할 수 있다.
+  + forEach()는 지정된 작업을 스트림의 모든 요소에 대해 수행한다.
+  + forEach()가 스트림의 모든 요소를 소모하면서 작업을 수행하므로 같은 스트림에 forEach()를 두 번 호출할 수 없다.
+  + 배열을 소스로 하는 스트림을 생성하는 메소드는 Stream과 Arrays에 static메소드로 정의되어 있다.
+  ```
+  Stream<T> Stream.of(T... values) // 가변 인자
+  Stream<T> Strema.of(T[])
+  Stream<T> Arrays.stream(T[])
+  Stream<T> Arrays.stream(T[], int startInculsive, int endExclusive)
+  ```
+  + int, long, double과 같은 기본형 배열을 소스로 하는 스트림을 생성하는 메소드도 있다.
+  + IntStream과 LongStraem은 다음과 같이 지정된 범위의 연속된 정수를 스트림으로 생성해서 반환하는 range()와 rangeClosed()를 가지고 있다.
+  ```
+  IntStream IntStream.range(int begin, int end) // end 미포함
+  IntStream IntStream.rangeClosed(int begin, int end) // end도 포함
+  ```
+  + 난수를 생성하는데 사용하는 Random클래스에는 아래와 같은 인스턴스 메소드들이 포함되어 있고, 이 메소드들은 해당 타입의 난수들로 이루어진 스트림을 반환한다.
+  ```
+  IntStream ints()
+  LongStreram longs()
+  DoubleStream doubles()
+  ```
+  + 이 메소드들이 반환하는 스트림은 크기가 정해지지 않은 '무한 스트림'이므로 limit()도 같이 사용해서 스트림의 크기를 제한해 주어야 한다.
+  + 매개변수로 스트림의 크기를 지정해서 '유한 스트림'을 생성할 수도 있다.
+  + Stream클래스의 iterate()와 generate()는 람다식을 매개변수로 받아서, 이 람다식에 의해 계산되는 값들을 요소로 하는 무한 스트림을 생성한다.
+  ```
+  static <T> Stream<T> iterate(T seed, UnaryOperator<T> f)
+  static <T> Stream<T> generate(Supplier<T> s)
+  ```
+  + iterate()는 씨앗값(seed)으로 지정된 값부터 시작해서, 람다식 f에 의해 계산된 결과를 다시 seed값으로 해서 계산을 반복한다.
+  + generate()도 iterate()처럼, 람다식에 의해 계산되는 값을 요소로 하는 무한 스트림을 생성해서 반환하지만, iterate()와 달리, 이전 결과를 이용해서 다음 요소를 계산하지 않는다.
+  + Stream의 static메소드인 concat()을 사용하면, 두 스트림을 하나로 연결할 수 있다.
+
++ 2.3 스트림의 중간연산
+  + 스트림 자르기 - skip(), limit()
+    + skip()과 limit()은 스트림의 일부를 잘라낼 때 사용한다.
+    + skip(3)은 처음 3개의 요소를 건너뛰고, limit(5)는 스트림의 요소를 5개로 제잔한다.
+    + 예를 들어 10개의 요소를 가진 스트림에 skip(3)과 limit(5)을 순서대로 적용하면 4번째 요소부터 5개의 요소를 가진 스트림이 반환된다.
+  + 스트림의 요소 걸러내기 - filter(), distinct()
+    + distinct()는 스트림에서 중복된 요소들을 제거하고, filter()는 주어진 조건(Predicate)에 맞지 않는 요소를 걸러낸다.
+    + filter()는 매개변수로 Predicate를 필요로 하는데, 연산결과가 boolean인 람다식을 사용해도 된다.
+    + 필요하다면 filter()를 다른 조건으로 여러 번 사용할 수도 있다.
+  + 정렬 - sorted()
+    ```
+    Stream<T> sotred()
+    Stream<T? sorted(Comparator<? super T> comparator)
+    ```
+    + sorted()는 지정된 Comparator로 스트림을 정렬하는데, Comparator대신 int값을 반환하는 람다식을 사용하는 것도 가능하다.
+    + Comparator를 지정하지 않으면 스트림 요소의 기본 정렬 기준(Comparable)으로 정렬한다.
+  + 변환 - map()
+    + 스트림의 요소에 저장된 값 중에서 원하는 필드만 뽑아내거나 특정 형태로 변환해야 할때 map()을 사용한다.
+    + 메소드의 선언부는 아래와 같으며, 매개변수로 T타입을 R타입으로 변환해서 반환하는 함수를 지정해야 한다.
+    ```
+    Stream<R> map(Function<? super T, ? extends R> mapper)
+    ```
+  + 조회 - peek()
+    + 연산과 연산 사이에 올바르게 처리되었는지 확인하고 싶을 때, peek()를 사용한다.
+    + forEach()와 달리 스트림의 요소를 소모하지 않는다.
+  + mapToInt(), mapToLong(), mapToDouble()
+    + map()은 연산의 결과로 Stream<T>타입의 스트림을 반환하는데, 스트림의 요소를 숫자로 변환하는 경우 기본형 스트림으로 변환하는 것이 더 유리하다.
+    + count()만 지원하는 Stream<T>와 달리 IntStream과 같은 기본형 스트림은 아래와 같이 숫자를 다루는데 편리한 메소드들을 제공한다.
+    ```
+    int sum() // 스트림의 모든 요소의 총합
+    OptionalDouble average() // sum() / (double)count()
+    OptionalInt max() // 스트림의 요소 중 제일 큰 값
+    OptionalInt min() // 스트름의 요소 중 제일 작은 값
+    ```
+    + 이 메소드들은 최종연산이기 때문에 호출 후에 스트림이 닫힌다.
+    + 이 메소드들을 연속해서 호출할 때 새로 스트림을 생성해야 하는 불편함때문에 summaryStatistics()라는 메소드가 따로 제공된다.
+    ```
+    Stream<String> -> IntStream 변환할 때, mapToInt(Integer::parseInt)
+    Stream<Integer> -> IntStream 변환할 때, mapToInt(Integer::intValue)
+    ```
+  + flatMap() - Stream<T[]>를 Stream<T>로 변환
+    + 스트림의 요소가 배열이거나 map()의 연산결과가 배열인 경우, 즉 스트림의 타입이 Stream<T[]>인 경우, Stream<T>로 다루는 것이 더 편리할 때가 있다.
+    + 그럴 때는 map()대신 flatMap()을 사용하면 된다.
+    ```
+    Stream<String[]> strArrStrm = Stream.of(
+      new String[] {"abc", "def", "ghi"},
+      new String[] {"ABC", "DEF", "GHI"}
+    );
+    Stream<String> strStrm = strArrStrm.flatMap(Arrays::stream);
+    ```
+
++ 2.4 Optional<T>와 OptinalInt
+  + 
