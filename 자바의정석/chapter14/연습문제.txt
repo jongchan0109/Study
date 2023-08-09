@@ -1,0 +1,116 @@
+[14-1] 메소드를 람다식으로 변환하여 아래의 표를 완성하시오.
+
+(a)
+int printVar(String name, int i) {
+  System.out.println(name+"="+i );
+}
+
+(b)
+int square(int x) {
+  return x * x;
+}
+
+(c)
+int roll() {
+  return (int)(Math.random() * 6);
+}
+
+(d)
+int sumArr(int[] arr) {
+  int sum = 0;
+  for(int i : arr)
+  sum += i;
+  return sum;
+}
+
+(e)
+int[] emptyArr() {
+  return new int[]{};
+}
+
+[14-1 풀이]
+(a)
+(name,i)-> System.out.println(name+"="+i)
+
+(b)
+x -> x * x
+
+(c)
+() -> (int)(Math.random() * 6)
+
+(d)
+(int[] arr) -> {
+  int sum = 0;
+  for(int i : arr)
+    sum += i;
+  return sum;
+}
+
+(e)
+() -> new int[]{}
+
+
+[14-2] 람다식을 메소드 참조로 변환하여 표를 완성하시오. (변환이 불가능한 경우, '변환불가' 라고 적어야 함.)
+
+(1) (String s) -> s.length()
+(2) ()-> new int[]{}
+(3) arr -> Arrays.stream(arr)
+(4) (String str1, String str2) -> str1.equals(str2)
+(5) (a, b) -> Integer.compare(a, b)
+(6) (String kind, int num) -> new Card(kind, num)
+(7) (x) -> System.out.println(x)
+(8) ()-> Math.random()
+(9) (str) -> str.toUpperCase()
+(10) () -> new NullPointerException()
+(11) (Optional opt) -> opt.get()
+(12) (StringBuffer sb, String s) -> sb.append(s)
+(13) (String s) -> System.out.println(s)
+
+[14-2 풀이]
+(1) String::length
+(2) int[]::new
+(3) Arrays::stream
+(4) String::equals
+(5) Integer::compare()
+(6) Card::new
+(7) System.out::println
+(8) Math::random
+(9) String::toUpperCase
+(10) NullPointExceptioin::new
+(11) Optional::get
+(12) StringBuffer::append
+(13) System.out::println
+
+
+[14-3] 아래의 괄호 안에 알맞은 함수형 인터페이스는?
+( ) f; // 함수형 인터페이스 f타입의 참조변수 를 선언.
+f = (int a, int b) -> a > b ? a : b;
+
+a. Function
+b. BiFunction
+c. Predicate
+d. BinaryOperator
+e. IntFunction
+
+[14-3 풀이]
+d. BinaryOperator
+
+
+[14-4] 문자열 배렬 strArr의 모든 문자열의 길이를 더한 결과를 출력하시오.
+String[] strArr = {"aaa","bb","c","dddd"};
+
+[14-4 풀이]
+코드 참조
+
+
+[14-5] 문자열 배열 strArr의 문자열 중에서 가장 긴 것의 길이를 출력하시오.
+String[] strArr = {"aaa","bb","c","dddd"};
+
+[14-5 풀이]
+코드 참조
+
+
+[14-6] 임의의 로또번호(1~45)를 정렬해서 출력하시오.
+
+[14-6 풀이]
+코드 참조
