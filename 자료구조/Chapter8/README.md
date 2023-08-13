@@ -42,6 +42,14 @@
       - 오른쪽 서브 트리를 연결한다.
 
 
+### 3. 이진 트리의 순회(Traversal)
++ 순회의 세 가지 방법
+  + 전위 순회(Preorder Traversal)
+  + 중위 순회(Inorder Traversal)
+  + 후위 순회(Postorder Traversal)
++ 트리는 구조가 재귀적이기 때문에 세가지 순회의 방법을 재귀적으로 구현만 하면 된다.
++ 
+
     
 + Code
   + BinaryTree
@@ -54,7 +62,7 @@
     + ListBaseQueue.c
     + ListBaseQueueMain.c
 
-  + Deque
-    + Deque.h
-    + Deque.c
-    + DequeMain.c
+  + BinaryTree2
+    + BinaryTree2.h
+    + BinaryTree2.c
+    + BinaryTreeMain2.c
