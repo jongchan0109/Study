@@ -48,7 +48,10 @@
   + 중위 순회(Inorder Traversal)
   + 후위 순회(Postorder Traversal)
 + 트리는 구조가 재귀적이기 때문에 세가지 순회의 방법을 재귀적으로 구현만 하면 된다.
-+ 
+
+
+### 4. 수식 트리(Expression Tree)의 구현
++ 수식 트리는 루트 노드에 저장된 연산자의 연산을 하되, 두 개의 자식 노드에 저장된 두 피연산자를 대상으로 연산을 한다.
 
     
 + Code
@@ -57,12 +60,16 @@
     + BinaryTree.c
     + BinaryTreeMain.c
 
-  + ListBaseQueue
-    + ListBaseQueue.h
-    + ListBaseQueue.c
-    + ListBaseQueueMain.c
-
   + BinaryTree2
     + BinaryTree2.h
     + BinaryTree2.c
     + BinaryTreeMain2.c
+
+  + ExpreesionTree
+    + BinaryTree2.h
+    + BinaryTree2.c
+    + ListBaseStack.h
+    + ListBaseStack.c
+    + ExpressionTree.h
+    + ExpressionTree.c
+    + ExpressionTreeMain.c
