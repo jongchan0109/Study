@@ -122,3 +122,23 @@
  
 + 5.2 InputStreamReader와 OutputStreamWriter
   + InputStreamReader/OutputStreamWriter는 이름에서 알 수 있는 것과 같이 바이트기반 스트림을 문자기반 스트림으로 연결시켜주는 역할을 한다.
+
+
+## 6. 표준입출력과 File
+
++ 6.1 표준입출력 - System.in, System.out, System.err
+  + 표준입출력은 콘솔을 통한 데이터 입력과 콘솔로의 데이터 출력을 의미한다.
+  + 자바에서는 표준 입출력(standard I/O)을 위한 3가지 입출력 스트림, System.in, System.out, System.err을 제공하는데, 이들은 자바 어플리케이션의 실행과 동시에 사용할 수 있게 자동적으로 생성되기 때문에 개발자가 별도로 스트림을 생성하는 코드를 작성하지 않고도 사용이 가능하다.
+  + System.in : 콘솔로부터 데이터를 입력받는데 사용
+  + System.out : 콘솔로 데이터를 출력하는데 사용
+  + System.err : 콘솔로 데이터를 출력하는데 사용
+  + out,err,in의 타입은 InputStream과 PrintStream이지만 실제로는 버퍼를 이용하는 BufferedInputStream과 BufferedOutputStream의 인스턴스를 사용한다.
+
++ 6.2 표준입출력의 대상변경 - setOut(), setErr(), setIn()
+  + 초기에는 System.in, System.out, System.err의 입출력대상이 콘솔화면이지만, setIn(), setOut(), setErr()를 사용하면 입출력을 콘솔 이외에 다른 입출력 대상으로 변경하는 것이 가능하다.
+
++ 6.3 RandomAccessFile
+  + 자바에서는 입력과 출력이 각각 분리되어 별도로 작업을 하도록 설계되어 있는데, RandomAccessFile만은 하나의 클래스로 파일에 대한 입력과 출력을 모두 할 수 있도록 되어 있다.
+  + DataInput인터페이스와 DataOutput인터페이스를 모두 구현했기 때문에 읽기와 쓰기가 모두 가능하다.
+  + RandomAccessFile클래스도 DataInputStream과 DataOutputStream처럼, 기본자료형 단위로 데이터를 읽고 쓸 수 있다.
+  + 가장 큰 장점은 파일의 어느 위치에나 읽기/쓰기가 가능하다는 것이다. 이것을 가능하게 하기 위해서 내부적으로 파일 포인터를 사용하는데, 입출력 시에 작업이 수행되는 곳이 바로 파일 포인터가 위차한 곳이 된다.
