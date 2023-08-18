@@ -1,75 +1,48 @@
-## Chapter8 트리(Tree)
-### 1. 트리의 개요
-  + 트리는 계층적 관계를 표현하는 자료구조이다.
-  + 트리 관련 용어
-    + 노드(node): 트리의 구성요소
-    + 간선(edge): 노드와 느도를 연결하는 연결선
-    + 루트 노드(root node): 트리 구조에서 최상위에 존재하는 노드
-    + 단말 노드(terminal node): 아래로 또 다른 노드가 연결되어 있지 않은 노드
-    + 내부 노드(internal node): 단말 노드를 제외한 모든 노드
-    + 부모(parent), 자식(child), 형제(sibling)
-    + 레벨(level): 각 층별로 숫자를 매겨서 트리의 레벨이라 함
-    + 높이(height): 트리의 최고 레벨
-  + 이진 트리(Binary Tree)
-    + 루트 노드를 중심으로 두 개의 서브 트리로 나뉘어짐
-    + 나뉘어진 두 트리도 모두 이진 트리어야 함
-  + 포화 이진 트리(Full Binary Tree)
-    + 모든 레벨이 꽉 찬 이진 트리
-  + 완전 이진 트리(complete binary tree)
-    + 노드가 위에서 아래로, 왼쪽에서 오른쪽의 순서대로 채워져있는 트리
-  
-### 2.이진 트리의 구현  
-### 이진 트리 자료구조의 ADT
-    BTreeNode* MakeBTreeNode(void);
-      - 이진 트리 노드를 생성하여 그 주소 값을 반환한다.
+## Chapter9 우선순위 큐(Priority Queue)와 힙(Heap)
+### 1. 우선순위 큐의 이해
++ 큐는 연산의 결과로, 먼저 들어간 데이터가 먼저 나오지만, 우선순위 큐는 들어간 순서에 상관없이 우선순위가 높은 데이터가 먼저 나온다.
++ 우선순위 큐에 저장되는 데이터들은 우선순위를 지녀야 한다기 보다는, 데이터를 근거로 우선순위를 판단할 수 있어야 한다.
++ 우선순위가 같은 데이터가 존재할 수 있다.
++ 우선순위 큐를 구현하는 방법은 세 가지로 구분할 수 있다.
+  + 배열을 기반으로 구현하는 방법
+  + 연결 리스트를 기반으로 구현하는 방법
+  + 힙(Heap)을 이용하는 방법
++ 연결 리스트와 배열을 기반으로 우선순위 큐를 구현하면, 데이터의 수가 많아지면 성능이 떨이진다. 그래서 힙으로 구현해야 한다.
++ 힙은 이진 트리이되, 완전 이진 트리이다. 그리고 모든 노드에 저장된 값은 자식 노드에 저장된 값보다 크거나 같아야 한다.
 
-    BTData GetData(BTreeNode* bt);
-      - 노드에 저장된 데이터를 반환한다.
+### 2.힙의 구현과 우선순위 큐의 완성
++ 배열 기반 데이터 저장의 시간 복잡도        O(n)
++ 배열 기반 데이터 삭제의 시간 복잡도        O(1)
++ 연결 리스트 기반 데이터 저장의 시간 복잡도   O(n)
++ 연결 리스트 기반 데이터 삭제의 시간 복잡도   O(1)
++ 힙 기반 데이터 저장의 시간 복잡도         O(log n)
++ 힙 기반 데이터 삭제의 시간 복잡도         O(log n)
 
-    void setData(BTreeNode* bt, BTData data);
-      - 노드에 데이터를 저장한다. data로 전달된 값을 저장한다.
++ 연결 리스트를 기반으로 힙을 구현하면, 새로운 노드를 힙의 마지막 위치에 추가하는 것이 쉽지 않다. 그러므로 배열을 기반으로 힙을 구현한다.
 
-    BTreeNode* GetLeftSubTree(BTreeNode* bt);
-      - 왼쪽 서브 트리의 주소 값을 반환한다.
+### 우선순위 큐 자료구조의 ADT
+    void PQueneInit(PQueue* ppq, PriorityComp pc);
+    - 우선순위 큐의 초기화를 진행한다.
+    - 우선순위 큐 생성 후 제일 먼저 호출되어야 하는 함수이다.
 
-    BTreeNode* GetRightSubTree(BTreeNode* bt);
-      - 오른쪽 서브 트리의 주소 값을 반환한다.
+    int PQIsEmpty(PQueue* ppq);
+    - 우선순위 큐가 빈 경우 TRUE(1)을, 그렇지 않은 경우 FALSE(0)을 반환한다.
 
-    void MakeLeftSubTree(BTreeNode* main, BTreeNode* sub);
-      - 왼쪽 서브 트리를 연결한다.
+    void PEnqueue(PQueue* ppq, PQData data);
+    - 우선순위 큐에 데이터를 저장한다. 매개변수 data로 전달된 값을 저장한다.
 
-    void MakeRightSubTree(BTreeNode* main, BTreeNode* sub);
-      - 오른쪽 서브 트리를 연결한다.
+    PQData PDequeue(PQueue* ppq);
+    - 우선순위가 가장 높은 데이터를 삭제한다.
+    - 삭제된 데이터는 반환된다.
+    - 본 함수의 호출을 위해서는 데이터가 하나 이상 존재함이 보장되어야 한다.
 
 
-### 3. 이진 트리의 순회(Traversal)
-+ 순회의 세 가지 방법
-  + 전위 순회(Preorder Traversal)
-  + 중위 순회(Inorder Traversal)
-  + 후위 순회(Postorder Traversal)
-+ 트리는 구조가 재귀적이기 때문에 세가지 순회의 방법을 재귀적으로 구현만 하면 된다.
-
-
-### 4. 수식 트리(Expression Tree)의 구현
-+ 수식 트리는 루트 노드에 저장된 연산자의 연산을 하되, 두 개의 자식 노드에 저장된 두 피연산자를 대상으로 연산을 한다.
 
     
 + Code
-  + BinaryTree
-    + BinaryTree.h
-    + BinaryTree.c
-    + BinaryTreeMain.c
-
-  + BinaryTree2
-    + BinaryTree2.h
-    + BinaryTree2.c
-    + BinaryTreeMain2.c
-
-  + ExpreesionTree
-    + BinaryTree2.h
-    + BinaryTree2.c
-    + ListBaseStack.h
-    + ListBaseStack.c
-    + ExpressionTree.h
-    + ExpressionTree.c
-    + ExpressionTreeMain.c
+  + PriorityQueue
+    + UsefulHeap.h
+    + UsefulHeap.c
+    + PriorityQueue.h
+    + PriorityQueue.c
+    + PriorityQueueMain.c
