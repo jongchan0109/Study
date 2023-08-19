@@ -16,6 +16,6 @@
     
 + Code
   + Sort
-  + BubbleSort.c
-  + SelectionSort.c
-  + InsertionSort.c
+    + BubbleSort.c
+    + SelectionSort.c
+    + InsertionSort.c
