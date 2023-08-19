@@ -15,7 +15,11 @@
 
     
 + Code
-  + Sort
+  + SimpleSort
     + BubbleSort.c
     + SelectionSort.c
     + InsertionSort.c
+  + HeapSort
+    + UsefulHeap.h
+    + UsefulHeap.c
+    + HeapSort.c
