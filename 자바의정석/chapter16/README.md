@@ -15,13 +15,19 @@
 + 1.3 InetAddress
   + 자바에서는 IP주소를 다루기 위한 클래스로 InetAddress를 제공한며 다음과 같은 메소드가 정의되어 있다.
 
-  |입력스트림|출력스트림|입출력 대상의 종류|
-  |------|--------|-----------|
-  |FileInputStream|FileOutputStream|파일|
-  |ByteArrayInputStream|ByteArrayOutputStream|메모리(byte배열)|
-  |PipedInputStream|PipedOutputStream|프로세스(프로세스간의 통신)|
-  |AudioInputStream|AudioOutputStream|오디오장치|
-
+  |메소드|설명|
+  |------|--------|
+  |byte[] getAddress()|IP주소를 byte배열로 반환한다.|
+  |static InetAddress[] getAllByName(String host)|도메인명(host)에 지정된 모든 호스트의 IP주소를 배열에 담아 반환한다.|
+  |static InetAddress getByAddress(byte[] addr)|byte배열을 통해 IP주소를 얻는다.|
+  |String getCanonicalHostName()|FQDN(Fully Qualified Domain Name)을 반환한다.|
+  |String getHostAddress()|호스트의 IP주소를 반환한다.|
+  |String getHostName()|호스트의 이름을 반환한다.|
+  |static InetAddress getLocalHost()|지역호스트의 IP주소를 반환한다.|
+  |boolean isMulticastAddress()|IP주소가 멀티캐스트 주소인지 알려준다.|
+  |boolean isLoopbackAddress()|IP주소가 loopback 주소(127.0.0.1)인지 알려준다.|
+  
+  
   + 이들은 모두 InputStream 또는 OutputStream의 자손들이며, 각각 읽고 쓰는데 필요한 추상메소드를 자신에 맞게 구현해 놓았다.
   + 자바에서는 java.io 패키지를 통해서 많은 종류의 입출력관련 클래스들을 제공하고 있으며, 입출력을 처리할 수 있는 표준화된 방법을 제공함으로써 입출력의 대상이 달라져도 동일한 방법으로 입출력이 가능하기 때문에 프로그래밍을 하기에 편리하다.
 
