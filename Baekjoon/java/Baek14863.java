@@ -22,6 +22,8 @@ public class Baek14863 {
     static StringTokenizer st;
     static int N, K;
     static Move[] moves;
+    static int[][] dp; // 추가된 부분
+    static final int INF = 987654321;
 
     static void input() throws IOException {
         br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,6 +34,7 @@ public class Baek14863 {
         K = Integer.parseInt(st.nextToken());
 
         moves = new Move[N + 1];
+        dp = new int[N + 1][K + 1]; // 추가된 부분
 
         for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
@@ -44,44 +47,28 @@ public class Baek14863 {
         }
     }
 
-    static void go() {
-        // DP 배열 초기화
-        int[][] dp = new int[N + 1][K + 1];
+    // 최대 모금액 계산하는 함수
+    static int go(int min, int index) {
+        if (min < 0)
+            return -INF;
+        if (index == N+1)
+            return 0;
+        if (dp[index][min] != 0)
+            return dp[index][min];
 
-        // DP 진행
-        for (int i = 1; i <= N; i++) {
-            if (i == 1) {
-                dp[i][moves[i].walkTime] = moves[i].walkMoney;
-                dp[i][moves[i].rideTime] = moves[i].rideMoney;
-            } else {
-                for (int j = 0; j <= K; j++) {
-                    // 도보 이동
-                    if (dp[i - 1][j] == 0)
-                        continue;
+        // 재귀적인 경우 계산
+        int walkCase = go(min - moves[index].walkTime, index + 1) + moves[index].walkMoney;
+        int rideCase = go(min - moves[index].rideTime, index + 1) + moves[index].rideMoney;
 
-                    if (j + moves[i].walkTime <= K) {
-                        dp[i][j + moves[i].walkTime] = Math.max(dp[i][j + moves[i].walkTime], dp[i - 1][j] + moves[i].walkMoney);
-                    }
+        // 도보와 자전거 중에서 최대값 선택
+        dp[index][min] = Math.max(walkCase, rideCase);
 
-                    // 자전거 이동
-                    if (j + moves[i].rideTime <= K) {
-                        dp[i][j + moves[i].rideTime] = Math.max(dp[i][j + moves[i].rideTime], dp[i - 1][j] + moves[i].rideMoney);
-                    }
-
-                }
-            }
-        }
-        // 최대 모금액 찾기
-        int maxMoney = 0;
-        for (int j = 0; j <= K; j++) {
-            maxMoney = Math.max(maxMoney, dp[N][j]);
-        }
-
-        System.out.println(maxMoney);
+        return dp[index][min];
     }
 
     public static void main(String[] args) throws IOException {
         input();
-        go();
+        int answer = go(K, 1);
+        System.out.println(answer);
     }
 }
